@@ -26,10 +26,7 @@ public class MainActivity extends FragmentActivity implements PagerController{
 		
 		// Call Parent onCreate Method
 		super.onCreate(savedInstanceState);
-
-		// Request FullScreen
-        //this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		
+	
 		// Set Current Layout
 		setContentView(R.layout.activity_sliderframe_main);			
 		
@@ -50,6 +47,7 @@ public class MainActivity extends FragmentActivity implements PagerController{
 	@Override
 	public void nextPage() {
 		
+		// Slide to next page on fragment trigger event
 		vpObject.setCurrentItem(vpObject.getCurrentItem() + 1);
 				
 	}
