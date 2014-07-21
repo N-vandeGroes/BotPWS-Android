@@ -2,7 +2,9 @@ package nl.dynasys.nick.botpws.fragments;
 
 import nl.dynasys.nick.botpws.R;
 import nl.dynasys.nick.botpws.adapters.BotSelectorListAdapter;
-import nl.dynasys.nick.botpws.adapters.BotSelectorListAdapter.RowHolder;
+import nl.dynasys.nick.botpws.adapters.BotSelectorListAdapter.BotDetails;
+import nl.dynasys.nick.botpws.types.PagerController;
+import nl.dynasys.nick.botpws.types.ParamHandler;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,10 +12,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
-public class BotSelectorFragment extends Fragment implements ListView.OnItemClickListener {
+public class BotSelectorFragment extends Fragment implements ListView.OnItemClickListener, ParamHandler {
 
+	private PagerController pagerController;
+	
+	public BotSelectorFragment(PagerController pController){
+		
+		this.pagerController = pController;
+		
+	}
+	
 	@Override
 	public View onCreateView(LayoutInflater layoutInflater, ViewGroup viewParent, Bundle savedInstanceState){
 		
@@ -24,7 +33,23 @@ public class BotSelectorFragment extends Fragment implements ListView.OnItemClic
 		ListView selectorList = (ListView) fragmentView.findViewById(R.id.BOTSELECTOR_SELECTORLIST);
 		
 		// Debug Botnames
-		String[] botnames = {"ProfielWerkStukRobot","ControlBot","DebugBot", "RaceAuto", "RaceAuto", "RaceAuto", "RaceAuto", "RaceAuto", "RaceAuto", "RaceAuto"};
+		BotDetails[] botnames = {new BotDetails(), new BotDetails()};
+		
+		botnames[0].BOT_DISPLAY_NAME = "BOT 1";
+		botnames[1].BOT_DISPLAY_NAME = "BOT 2";
+		
+		// Debugging
+		botnames[0].BOT_CONN_2400 = true;
+		botnames[1].BOT_CONN_2400 = true;	
+		
+		botnames[0].BOT_CONN_433 = true;
+		botnames[1].BOT_CONN_433 = true;
+		
+		botnames[0].BOT_CONN_BLUETOOTH = true;
+		botnames[1].BOT_CONN_BLUETOOTH = true;
+		
+		botnames[0].BOT_CONN_WIFI = true;
+		botnames[1].BOT_CONN_WIFI = true;
 		
 		// Set List Adapter with Debug Information
 		selectorList.setAdapter(new BotSelectorListAdapter(this.getActivity(), botnames));
@@ -40,7 +65,13 @@ public class BotSelectorFragment extends Fragment implements ListView.OnItemClic
 	@Override
 	public void onItemClick(AdapterView<?> adapterView, View clickedView, int viewPosition, long viewId) {
 
-		Toast.makeText(getActivity(), ((RowHolder) clickedView.getTag()).botNameView.getText(), Toast.LENGTH_LONG).show();
+		this.pagerController.nextPage();
+		
+	}
+
+	@Override
+	public void handleParameters(Bundle paramPacket) {
+		// TODO Auto-generated method stub
 		
 	}
 	

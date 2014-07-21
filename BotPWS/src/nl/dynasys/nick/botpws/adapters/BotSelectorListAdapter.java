@@ -11,7 +11,7 @@ import android.widget.TextView;
 public class BotSelectorListAdapter extends ArrayAdapter<String> {
 
 	private Context aCTX;
-	private String[] botNameArray;
+	private BotDetails[] botDetailStore;
 	
 	public static class RowHolder {
 		
@@ -20,16 +20,46 @@ public class BotSelectorListAdapter extends ArrayAdapter<String> {
 		
 	}
 	
-	public BotSelectorListAdapter(Context appContext, String[] botNames) {
+	public static class BotDetails {
+		
+		public String BOT_DISPLAY_NAME;
+		
+		// CONNTYPE : BlueTooth Antenna
+		public boolean BOT_CONN_BLUETOOTH;
+		public String BOT_BLUETOOTH_MAC;
+		
+		// CONNTYPE : Wi-Fi Antenna
+		public boolean BOT_CONN_WIFI;
+		public String BOT_WIFI_SSID;
+		public String BOT_WIFI_MAC;
+		
+		// CONNTYPE : 433MHz Antenna
+		public boolean BOT_CONN_433;
+		public String BOT_433_MAC;
+		
+		// CONNTYPE : 2.4GHz Antenna
+		public boolean BOT_CONN_2400;
+		public String BOT_2400_MAC;
+		
+	}
+	
+	public static class RowDetailTag {
+	
+		public RowHolder rowHolder;
+		public BotDetails botDetails;
+	
+	}
+	
+	public BotSelectorListAdapter(Context appContext, BotDetails[] discoveredBots) {
 		
 		// Call Super Constructor
-		super(appContext, R.layout.listitem_botselector_botlist, botNames);
+		super(appContext, R.layout.listitem_botselector_botlist);
 		
 		// Set Context
 		this.aCTX = appContext;
 		
 		// Store Robot Names
-		botNameArray = botNames;
+		this.botDetailStore = discoveredBots;
 		
 	}
 	
@@ -40,25 +70,78 @@ public class BotSelectorListAdapter extends ArrayAdapter<String> {
 		
 		if(rowView == null){
 			
+			// Create New RowView
 			LayoutInflater layoutInflater = (LayoutInflater) aCTX.getSystemService(Context.LAYOUT_INFLATER_SERVICE );
 			rowView = layoutInflater.inflate(R.layout.listitem_botselector_botlist, viewParent, false);
 			
+			// Initialize RowHolder
 			RowHolder rowHolder = new RowHolder();
 			
 			rowHolder.botNameView = (TextView) rowView.findViewById(R.id.LISTITEM_BOTSELECTOR_BOTNAME);
 			rowHolder.techBotDetails = (TextView) rowView.findViewById(R.id.LISTITEM_BOTSELECTOR_TECHBOTNAME);
 
-			rowView.setTag(rowHolder);
+			// Initialize BotDetails
+			BotDetails botDetails = new BotDetails();
+						
+			// Initialize RowDetailTag
+			RowDetailTag rdTag = new RowDetailTag();
+			rdTag.botDetails = botDetails;
+			rdTag.rowHolder = rowHolder;
+			
+			// Set Tag
+			rowView.setTag(rdTag);
 			
 		}
 		
-		RowHolder rHolder = (RowHolder) rowView.getTag();
+		// Get Tag From Existing View
+		RowDetailTag rdTag = (RowDetailTag) rowView.getTag();
 		
-	    String botName = botNameArray[viewPosition];
+		// Initialize BotDetails
+		BotDetails botDetails = this.botDetailStore[viewPosition];
+		
+		// Initialize RowHolder
+		RowHolder rowHolder = rdTag.rowHolder;
+		
+		// Set Display Name		
+		rowHolder.botNameView.setText(botDetails.BOT_DISPLAY_NAME);
+		
+		// Set Connectivity Methods
+		String botConnMethods = null;
+		
+		// Create Connection String
+		if(botDetails.BOT_CONN_BLUETOOTH){
+			
+			botConnMethods = botConnMethods + "Bluetooth //";
+			
+		}
+		
+		if(botDetails.BOT_CONN_433){
+			
+			botConnMethods = botConnMethods + " 433MHz //";
+			
+		}
+		
+		if(botDetails.BOT_CONN_2400){
+			
+			botConnMethods = botConnMethods + " 2.4GHz //";
+			
+		}
+		
+		if(botDetails.BOT_CONN_WIFI){
+			
+			botConnMethods = botConnMethods + " Wi-Fi";
+			
+		}
+		
+		// Set Connection String
+		rowHolder.techBotDetails.setText(botConnMethods);
 	    
-	    rHolder.botNameView.setText(botName);
-	    rHolder.techBotDetails.setText("Bluetooth // 2.4 GHz // 5 GHz // WiFi");
-	    
+		// Re-Initialize BotDetails
+		rdTag.botDetails = botDetails;
+		
+		// Set Tag With BotDetails
+		rowView.setTag(rdTag);
+		
 		return rowView;
 		
 	}

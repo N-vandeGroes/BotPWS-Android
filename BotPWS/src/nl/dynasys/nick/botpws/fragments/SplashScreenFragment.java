@@ -2,13 +2,14 @@ package nl.dynasys.nick.botpws.fragments;
 
 import nl.dynasys.nick.botpws.R;
 import nl.dynasys.nick.botpws.types.PagerController;
+import nl.dynasys.nick.botpws.types.ParamHandler;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class SplashScreenFragment extends Fragment {
+public class SplashScreenFragment extends Fragment implements ParamHandler {
 
 	private PagerController pagerController;
 	
@@ -35,6 +36,12 @@ public class SplashScreenFragment extends Fragment {
 		
 		// Return View
 		return layoutInflater.inflate(R.layout.fragment_splashscreen_default, viewParent, false);
+		
+	}
+
+	@Override
+	public void handleParameters(Bundle paramPacket) {
+		// TODO Auto-generated method stub
 		
 	}
 	
