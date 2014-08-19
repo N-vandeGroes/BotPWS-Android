@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/back_color" >
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical"
+        android:padding="7.5dp" >
+
+        <Button
+            android:id="@+id/BOTCONTROL.BUTTON.ZERO"
+            style="?android:attr/buttonStyleSmall"
+            android:textColor="@color/white"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="Zero Sensors" />
+
+        <Button
+            android:id="@+id/button2"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:text="Terminate" />
+
+        <ToggleButton
+            android:id="@+id/toggleButton1"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textOff="Auto Pilot"
+            android:textOn="Auto Pilot" />
+
+        <ToggleButton
+            android:textColor="@color/white"
+            android:id="@+id/toggleButton2"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:textOff="Lights Front"
+            android:textOn="Lights Front" />
+
+        <ToggleButton
+            android:textColor="@color/white"
+            android:id="@+id/toggleButton3"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:textOff="Lights Back"
+            android:textOn="Lights Back" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/linearLayout1" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:textColor="@color/white"
+            android:textSize="90sp"
+            android:text="45"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
