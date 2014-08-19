@@ -3,7 +3,9 @@ package nl.dynasys.nick.botpws;
 import java.util.ArrayList;
 
 import nl.dynasys.nick.botpws.adapters.DefaultSlideAdapter;
+import nl.dynasys.nick.botpws.fragments.BotControlFragment;
 import nl.dynasys.nick.botpws.fragments.BotSelectorFragment;
+import nl.dynasys.nick.botpws.fragments.ConnectionTypeFragment;
 import nl.dynasys.nick.botpws.fragments.SplashScreenFragment;
 import nl.dynasys.nick.botpws.types.PagerController;
 import nl.dynasys.nick.botpws.types.ParamHandler;
@@ -13,6 +15,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
+import android.util.Log;
 
 public class MainActivity extends FragmentActivity implements PagerController{
 	
@@ -37,6 +40,8 @@ public class MainActivity extends FragmentActivity implements PagerController{
 		// Create Fragment Array For Slider Pages
 		sliderPages.add(new SplashScreenFragment(this));
 		sliderPages.add(new BotSelectorFragment(this));
+		sliderPages.add(new ConnectionTypeFragment(this));
+		sliderPages.add(new BotControlFragment());
 		
 		// Initialize ViewPager
 		vpObject = (SolidViewPager) this.findViewById(R.id.MAIN_ACTIVITY_VIEWPAGER);
@@ -48,6 +53,18 @@ public class MainActivity extends FragmentActivity implements PagerController{
 	}
 	
 	@Override
+	public void onBackPressed(){
+		
+		// Slide Back, except to the SplashScreen
+		if(vpObject.getCurrentItem() > 1){
+			
+			vpObject.setCurrentItem(vpObject.getCurrentItem() - 1);
+		
+		}
+			
+	}
+	
+	@Override
 	public void nextPage() {
 		
 		// Slide to next page on fragment trigger event
@@ -56,7 +73,7 @@ public class MainActivity extends FragmentActivity implements PagerController{
 	}
 
 	@Override
-	public void nextPageWithParams(Bundle pageParams) {
+	public void nextPageWithParams(Object pageParams) {
 
 		// Slide to next page on fragment trigger event
 		vpObject.setCurrentItem(vpObject.getCurrentItem() + 1);

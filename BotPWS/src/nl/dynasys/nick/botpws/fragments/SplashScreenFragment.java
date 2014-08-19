@@ -22,17 +22,17 @@ public class SplashScreenFragment extends Fragment implements ParamHandler {
 	@Override
 	public View onCreateView(LayoutInflater layoutInflater, ViewGroup viewParent, Bundle savedInstanceState){
 		
-		new java.util.Timer().schedule( 
+		/*new java.util.Timer().schedule( 
 		        new java.util.TimerTask() {
 		            @Override
-		            public void run() {
+		            public void run() {*/
 
 		            	SplashScreenFragment.this.pagerController.nextPage();
 		            
-		            }
+		           /* }
 		        }, 
 		        5000 
-		);
+		);*/
 		
 		// Return View
 		return layoutInflater.inflate(R.layout.fragment_splashscreen_default, viewParent, false);
@@ -40,9 +40,7 @@ public class SplashScreenFragment extends Fragment implements ParamHandler {
 	}
 
 	@Override
-	public void handleParameters(Bundle paramPacket) {
-		// TODO Auto-generated method stub
-		
+	public void handleParameters(Object paramPacket) {		
 	}
 	
 }

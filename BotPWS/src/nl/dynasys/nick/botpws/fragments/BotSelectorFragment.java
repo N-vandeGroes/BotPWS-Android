@@ -2,7 +2,8 @@ package nl.dynasys.nick.botpws.fragments;
 
 import nl.dynasys.nick.botpws.R;
 import nl.dynasys.nick.botpws.adapters.BotSelectorListAdapter;
-import nl.dynasys.nick.botpws.adapters.BotSelectorListAdapter.BotDetails;
+import nl.dynasys.nick.botpws.adapters.BotSelectorListAdapter.RowDetailTag;
+import nl.dynasys.nick.botpws.types.BotDetails;
 import nl.dynasys.nick.botpws.types.PagerController;
 import nl.dynasys.nick.botpws.types.ParamHandler;
 import android.os.Bundle;
@@ -16,6 +17,12 @@ import android.widget.ListView;
 public class BotSelectorFragment extends Fragment implements ListView.OnItemClickListener, ParamHandler {
 
 	private PagerController pagerController;
+	
+	public BotSelectorFragment(){
+	
+		
+	
+	}
 	
 	public BotSelectorFragment(PagerController pController){
 		
@@ -35,8 +42,8 @@ public class BotSelectorFragment extends Fragment implements ListView.OnItemClic
 		// Debug Botnames
 		BotDetails[] botnames = {new BotDetails(), new BotDetails()};
 		
-		botnames[0].BOT_DISPLAY_NAME = "BOT 1";
-		botnames[1].BOT_DISPLAY_NAME = "BOT 2";
+		botnames[0].BOT_DISPLAY_NAME = "ProfielWerkstukRobot Nick";
+		botnames[1].BOT_DISPLAY_NAME = "PWSRobot Roel";
 		
 		// Debugging
 		botnames[0].BOT_CONN_2400 = true;
@@ -65,12 +72,13 @@ public class BotSelectorFragment extends Fragment implements ListView.OnItemClic
 	@Override
 	public void onItemClick(AdapterView<?> adapterView, View clickedView, int viewPosition, long viewId) {
 
-		this.pagerController.nextPage();
+		RowDetailTag rdHolder = (RowDetailTag) clickedView.getTag();
+		this.pagerController.nextPageWithParams(rdHolder.botDetails);
 		
 	}
 
 	@Override
-	public void handleParameters(Bundle paramPacket) {
+	public void handleParameters(Object paramPacket) {
 		// TODO Auto-generated method stub
 		
 	}

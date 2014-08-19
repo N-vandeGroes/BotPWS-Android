@@ -1,6 +1,7 @@
 package nl.dynasys.nick.botpws.adapters;
 
 import nl.dynasys.nick.botpws.R;
+import nl.dynasys.nick.botpws.types.BotDetails;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-public class BotSelectorListAdapter extends ArrayAdapter<String> {
+public class BotSelectorListAdapter extends ArrayAdapter<BotDetails> {
 
 	private Context aCTX;
 	private BotDetails[] botDetailStore;
@@ -17,29 +18,6 @@ public class BotSelectorListAdapter extends ArrayAdapter<String> {
 		
 		public TextView botNameView;
 		public TextView techBotDetails;
-		
-	}
-	
-	public static class BotDetails {
-		
-		public String BOT_DISPLAY_NAME;
-		
-		// CONNTYPE : BlueTooth Antenna
-		public boolean BOT_CONN_BLUETOOTH;
-		public String BOT_BLUETOOTH_MAC;
-		
-		// CONNTYPE : Wi-Fi Antenna
-		public boolean BOT_CONN_WIFI;
-		public String BOT_WIFI_SSID;
-		public String BOT_WIFI_MAC;
-		
-		// CONNTYPE : 433MHz Antenna
-		public boolean BOT_CONN_433;
-		public String BOT_433_MAC;
-		
-		// CONNTYPE : 2.4GHz Antenna
-		public boolean BOT_CONN_2400;
-		public String BOT_2400_MAC;
 		
 	}
 	
@@ -53,7 +31,7 @@ public class BotSelectorListAdapter extends ArrayAdapter<String> {
 	public BotSelectorListAdapter(Context appContext, BotDetails[] discoveredBots) {
 		
 		// Call Super Constructor
-		super(appContext, R.layout.listitem_botselector_botlist);
+		super(appContext, R.layout.listitem_botselector_botlist, discoveredBots);
 		
 		// Set Context
 		this.aCTX = appContext;
@@ -65,11 +43,11 @@ public class BotSelectorListAdapter extends ArrayAdapter<String> {
 	
 	@Override
 	public View getView(int viewPosition, View convertView, ViewGroup viewParent){
-		
+				
 		View rowView = convertView;
 		
 		if(rowView == null){
-			
+						
 			// Create New RowView
 			LayoutInflater layoutInflater = (LayoutInflater) aCTX.getSystemService(Context.LAYOUT_INFLATER_SERVICE );
 			rowView = layoutInflater.inflate(R.layout.listitem_botselector_botlist, viewParent, false);
@@ -92,7 +70,7 @@ public class BotSelectorListAdapter extends ArrayAdapter<String> {
 			rowView.setTag(rdTag);
 			
 		}
-		
+		 
 		// Get Tag From Existing View
 		RowDetailTag rdTag = (RowDetailTag) rowView.getTag();
 		
@@ -106,7 +84,7 @@ public class BotSelectorListAdapter extends ArrayAdapter<String> {
 		rowHolder.botNameView.setText(botDetails.BOT_DISPLAY_NAME);
 		
 		// Set Connectivity Methods
-		String botConnMethods = null;
+		String botConnMethods = "";
 		
 		// Create Connection String
 		if(botDetails.BOT_CONN_BLUETOOTH){

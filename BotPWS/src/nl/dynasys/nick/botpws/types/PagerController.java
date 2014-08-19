@@ -5,6 +5,6 @@ import android.os.Bundle;
 public interface PagerController {
 
 	public void nextPage();
-	public void nextPageWithParams(Bundle pageParams);
+	public void nextPageWithParams(Object pageParams);
 	
 }

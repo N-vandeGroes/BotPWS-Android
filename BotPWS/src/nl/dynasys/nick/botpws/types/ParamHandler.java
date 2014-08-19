@@ -1,9 +1,7 @@
 package nl.dynasys.nick.botpws.types;
 
-import android.os.Bundle;
-
 public interface ParamHandler {
 
-	public void handleParameters(Bundle paramPacket);
+	public void handleParameters(Object paramPacket);
 	
 }

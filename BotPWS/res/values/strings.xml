@@ -6,5 +6,6 @@
     <string name="SPLASH_SCREEN.BOTPWS_LOADING_LABEL">Loading BotPWS..</string>
     
     <string name="BOTSELECTOR.LABELFRAME.LABEL">BotPWS is nog niet verbonden met een robot. Hieronder ziet u een lijst van de beschikbare robots en hun technische gegegevens. Selecteer de robot waarmee u verbinding wilt maken.\r\n\r\n<b>Om verbinding te maken heeft u wel de PIN-code van de robot nodig.</b></string>
+    <string name="BOTSELECTOR.CONNMODE.LABELFRAME.LABEL">U heeft er voor gekozen verbinding te maken met : {BOT}. Geef hieronder het verbindingstype aan waarvan u gebruik wilt maken.</string>
     
 </resources>
