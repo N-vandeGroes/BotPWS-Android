@@ -15,7 +15,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
-import android.util.Log;
 
 public class MainActivity extends FragmentActivity implements PagerController{
 	
@@ -41,7 +40,9 @@ public class MainActivity extends FragmentActivity implements PagerController{
 		sliderPages.add(new SplashScreenFragment(this));
 		sliderPages.add(new BotSelectorFragment(this));
 		sliderPages.add(new ConnectionTypeFragment(this));
-		sliderPages.add(new BotControlFragment());
+		
+		// DEPRECATED : Fragment is Replaced By Activity
+		// sliderPages.add(new BotControlFragment());
 		
 		// Initialize ViewPager
 		vpObject = (SolidViewPager) this.findViewById(R.id.MAIN_ACTIVITY_VIEWPAGER);

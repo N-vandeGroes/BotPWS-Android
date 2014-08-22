@@ -3,8 +3,10 @@
     package="nl.dynasys.nick.botpws"
     android:versionCode="1"
     android:versionName="1.0" >
+	
+	<uses-permission android:name="android.permission.READ_LOGS" />
 
-    <uses-sdk
+	<uses-sdk
         android:minSdkVersion="17"
         android:targetSdkVersion="17" />
 
@@ -24,6 +26,27 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        <activity
+            android:name="nl.dynasys.nick.botpws.BotControlActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+             >
+        </activity>        
+        
+        <activity
+            android:name="nl.dynasys.nick.botpws.BotRootActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
+             >
+        </activity>        
+        
+        <activity
+            android:name="nl.dynasys.nick.botpws.BotDebugActivity"
+            android:label="@string/app_name"
+             >
+        </activity>
+        
     </application>
 
 </manifest>
