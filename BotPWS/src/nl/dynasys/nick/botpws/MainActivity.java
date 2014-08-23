@@ -7,6 +7,7 @@ import nl.dynasys.nick.botpws.fragments.BotControlFragment;
 import nl.dynasys.nick.botpws.fragments.BotSelectorFragment;
 import nl.dynasys.nick.botpws.fragments.ConnectionTypeFragment;
 import nl.dynasys.nick.botpws.fragments.SplashScreenFragment;
+import nl.dynasys.nick.botpws.handlers.BotPWSDebugger;
 import nl.dynasys.nick.botpws.types.PagerController;
 import nl.dynasys.nick.botpws.types.ParamHandler;
 import nl.dynasys.nick.botpws.view.SolidViewPager;
@@ -33,16 +34,22 @@ public class MainActivity extends FragmentActivity implements PagerController{
 		// Call Parent onCreate Method
 		super.onCreate(savedInstanceState);
 	
+		// Debug Logging
+		BotPWSDebugger.log("Initializing Application.");
+		
 		// Set Current Layout
 		setContentView(R.layout.activity_sliderframe_main);			
 		
 		// Create Fragment Array For Slider Pages
-		sliderPages.add(new SplashScreenFragment(this));
+		//sliderPages.add(new SplashScreenFragment(this));
 		sliderPages.add(new BotSelectorFragment(this));
 		sliderPages.add(new ConnectionTypeFragment(this));
 		
 		// DEPRECATED : Fragment is Replaced By Activity
 		// sliderPages.add(new BotControlFragment());
+		
+		// Debug Logging
+		BotPWSDebugger.log("Setting up Robot Selection Menu.");
 		
 		// Initialize ViewPager
 		vpObject = (SolidViewPager) this.findViewById(R.id.MAIN_ACTIVITY_VIEWPAGER);

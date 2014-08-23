@@ -27,6 +27,12 @@ public class ConnectionTypeFragment extends Fragment implements ListView.OnItemC
 
 	private PagerController pagerController;
 	
+	public ConnectionTypeFragment(){
+		
+		
+		
+	}
+	
 	public ConnectionTypeFragment(PagerController pController){
 		
 		this.pagerController = pController;

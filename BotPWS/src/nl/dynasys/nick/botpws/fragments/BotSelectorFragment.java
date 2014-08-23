@@ -3,6 +3,7 @@ package nl.dynasys.nick.botpws.fragments;
 import nl.dynasys.nick.botpws.R;
 import nl.dynasys.nick.botpws.adapters.BotSelectorListAdapter;
 import nl.dynasys.nick.botpws.adapters.BotSelectorListAdapter.RowDetailTag;
+import nl.dynasys.nick.botpws.handlers.BotPWSDebugger;
 import nl.dynasys.nick.botpws.types.BotDetails;
 import nl.dynasys.nick.botpws.types.PagerController;
 import nl.dynasys.nick.botpws.types.ParamHandler;
@@ -20,7 +21,7 @@ public class BotSelectorFragment extends Fragment implements ListView.OnItemClic
 	
 	public BotSelectorFragment(){
 	
-		
+		this.pagerController = (PagerController) this.getActivity();
 	
 	}
 	
@@ -36,6 +37,10 @@ public class BotSelectorFragment extends Fragment implements ListView.OnItemClic
 		// Create Fragment Layout
 		View fragmentView = layoutInflater.inflate(R.layout.fragment_botselector_default, viewParent, false);
 		
+		// Debug Logging
+		BotPWSDebugger.log("Fetching Available Robots.");
+		BotPWSDebugger.log("Creating List.");
+				
 		// Initialize ListView
 		ListView selectorList = (ListView) fragmentView.findViewById(R.id.BOTSELECTOR_SELECTORLIST);
 		

@@ -13,6 +13,12 @@ public class SplashScreenFragment extends Fragment implements ParamHandler {
 
 	private PagerController pagerController;
 	
+	public SplashScreenFragment(){
+		
+		
+		
+	}
+	
 	public SplashScreenFragment(PagerController pController){
 		
 		this.pagerController = pController;
