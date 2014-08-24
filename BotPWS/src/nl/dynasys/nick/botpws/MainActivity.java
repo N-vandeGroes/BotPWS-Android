@@ -17,7 +17,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
 
-public class MainActivity extends FragmentActivity implements PagerController{
+public class MainActivity extends FragmentActivity implements PagerController {
 	
 	// Hold viewpager object for dynamic editing.
 	private SolidViewPager vpObject;
@@ -64,7 +64,7 @@ public class MainActivity extends FragmentActivity implements PagerController{
 	public void onBackPressed(){
 		
 		// Slide Back, except to the SplashScreen
-		if(vpObject.getCurrentItem() > 1){
+		if(vpObject.getCurrentItem() > 0){
 			
 			vpObject.setCurrentItem(vpObject.getCurrentItem() - 1);
 		

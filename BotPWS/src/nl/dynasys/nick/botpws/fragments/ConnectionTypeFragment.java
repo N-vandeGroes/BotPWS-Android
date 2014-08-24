@@ -6,6 +6,7 @@ import nl.dynasys.nick.botpws.BotRootActivity;
 import nl.dynasys.nick.botpws.R;
 import nl.dynasys.nick.botpws.adapters.DefaultListAdapter;
 import nl.dynasys.nick.botpws.adapters.DefaultListAdapter.RowDetailTag;
+import nl.dynasys.nick.botpws.handlers.BotPWSDebugger;
 import nl.dynasys.nick.botpws.types.BotDetails;
 import nl.dynasys.nick.botpws.types.ModeDetails;
 import nl.dynasys.nick.botpws.types.PagerController;
@@ -54,6 +55,10 @@ public class ConnectionTypeFragment extends Fragment implements ListView.OnItemC
 		// Initialize ListView
 		connModeListView = (ListView) fragmentView.findViewById(R.id.BOTSELECTOR_CONNMODE_SELECTORLIST);
 		
+		// Debug Logging
+		BotPWSDebugger.log("Check Available Modi.");
+		BotPWSDebugger.log("Waiting for User Choice...");
+		
 		// Initialize ConnMode Array
 		ModeDetails[] availableModus = {new ModeDetails(), new ModeDetails(), new ModeDetails()};
 
@@ -88,6 +93,10 @@ public class ConnectionTypeFragment extends Fragment implements ListView.OnItemC
 		
 			case 1 :
 			
+				// Debug Logging
+				BotPWSDebugger.log("User Choice Accepted.");
+				BotPWSDebugger.log("Launching BotController.");
+				
 				// Start Control Activity
 				Intent controlIntent = new Intent(this.getActivity(), BotControlActivity.class);
 				startActivity(controlIntent);
@@ -96,6 +105,10 @@ public class ConnectionTypeFragment extends Fragment implements ListView.OnItemC
 			
 			case 2 :
 				
+				// Debug Logging
+				BotPWSDebugger.log("User Choice Accepted.");
+				BotPWSDebugger.log("Launching Root Mode.");
+				
 				// Start Root Activity
 				Intent rootIntent = new Intent(this.getActivity(), BotRootActivity.class);
 				startActivity(rootIntent);
@@ -103,6 +116,10 @@ public class ConnectionTypeFragment extends Fragment implements ListView.OnItemC
 			break;
 		
 			case 3 :
+				
+				// Debug Logging
+				BotPWSDebugger.log("User Choice Accepted.");
+				BotPWSDebugger.log("Launching BotDebugger.");
 				
 				// Start Debug Activity
 				Intent debugIntent = new Intent(this.getActivity(), BotDebugActivity.class);
